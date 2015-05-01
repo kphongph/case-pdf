@@ -1,0 +1,21 @@
+{
+  "name": "case-pdf",
+  "version": "0.0.0",
+  "homepage": "https://github.com/kphongph/case-pdf",
+  "description": "javascript pdf generation for CASE",
+  "authors": [
+    "Phongphun Kijsanayothin"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bower-pdfkit": "~0.7.0",
+    "requirejs": "~2.1.17"
+  }
+}
