@@ -1,2 +1,8 @@
-[
-]
+{
+  "fonts" : {
+    "THSarabun" : {
+      "normal" : "fonts/THSarabun.ttf",
+      "bold" : "fonts/THSarabun Bold.ttf"
+    }
+  }
+}
