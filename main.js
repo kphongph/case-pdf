@@ -1,9 +1,9 @@
 require([
-  'app/loader',
+  'app/datasource',
   'jquery',
   'pdfkit',
   'blob-stream'
-], function(loader,$,pdfkit,blobStream) {
+], function(ds,$,pdfkit,blobStream) {
   var font_lib = {};
 
   var doc = new pdfkit();
@@ -16,17 +16,9 @@ require([
     $('#mypdf')[0].src = url;
   });
 
-  loader.loadJSON('./test.json',function(content) {
-    console.log(content);
-
-    $.each(content.fonts, function(font) {
-      font_lib[font] = {};
-      $.each(content.fonts[font], function(type) {
-        loader.loadRAW(content.fonts[font][type],function(raw) {
-          font_lib[font][type] = raw;
-        });
-      });
-    });
+  ds.init({json_file:'test.json'});
+  ds.getFont('THSarabun','normal', function(raw) {
+    console.log('found');
   });
   
 });
