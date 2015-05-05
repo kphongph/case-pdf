@@ -16,9 +16,14 @@ require([
     $('#mypdf')[0].src = url;
   });
 
-  ds.init({json_file:'test.json'});
+  ds.open('test.json', function() {
+    console.log(ds);
+  });
+
+  /*
   ds.getFont('THSarabun','normal', function(raw) {
     console.log('found');
   });
+  */
   
 });

@@ -21,50 +21,39 @@ define(['jquery'], function($) {
   };
 
   var font_lib = {};
-  var json_file = null;
   var json_content = null;
-  var state = null;
   
-
-  var init = function(config) {
-    json_file = config.json_file;
-  }
-
-  var _load_json_content = function(cb) {
-    loadJSON(this.json_file, function(content) {
-      console.log('load json',this.json_file);
-      this.json_content = content;
-      cb();
-    });
-  }
-
   var getFont = function(fontName,fontType,cb) {
-    
+    console.log(json_content);
     if(font_lib[fontName] && font_lib[fontName][fontType]) {
       cb(font_lib[fontName][type]);
     } else { 
-      if(!this.json_content) {
-      } else {
-        $.each(this.json_content.fonts, function(font) {
-          if(font==fontName) {
-            font_lib[font] = {};
-            $.each(json_content.fonts[font], function(type) {
-              if(fontType == type) {
-                loadRAW(json_content.fonts[font][type],function(raw) {
-                  font_lib[font][type] = raw;
-                  cb(raw);
-                });
-              }
-            });
-          }
-        });
-      }
+      $.each(json_content.fonts, function(font) {
+        if(font==fontName) {
+          font_lib[font] = {};
+          $.each(json_content.fonts[font], function(type) {
+            if(fontType == type) {
+              loadRAW(json_content.fonts[font][type],function(raw) {
+                font_lib[font][type] = raw;
+                cb(raw);
+              });
+            }
+          });
+        }
+      });
     }
   };
 
-  return {
-    init : init,
-    getFont : getFont
+  var ds = {
+    json_content : null,
+    open : function(url,cb) {
+      var dsObj = this;
+      loadJSON(url,function(response) {
+        dsObj.json_content = response;
+        cb();
+      });
+    }
   };
-  
+
+  return ds;
 });
