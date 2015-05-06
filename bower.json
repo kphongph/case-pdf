@@ -7,7 +7,7 @@
     "Phongphun Kijsanayothin"
   ],
   "license": "MIT",
-  "main":"case_pdf.js",
+  "main":"./dist/case_pdf.js",
   "ignore": [
     "**/.*",
     "node_modules",
