@@ -7,5 +7,5 @@
     "blob-stream":"./bower_components/bower-pdfkit/blob-stream-v0.1.2"
   },
   name:"main",
-  out:"case_pdf.js"
+  out:"dist/case_pdf.js"
 });
