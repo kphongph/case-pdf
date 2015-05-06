@@ -1,56 +1,40 @@
 define(['jquery'], function($) {
 
   var loadJSON = function(url,cb) {
-    $.ajax({
-      url:url,
-      method:'GET',
-      dataType:'json'
-    }).done(function(response) {
-      cb(response);
-    });
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'text';
+    xhr.onload = function(e) {
+      cb(JSON.parse(xhr.responseText));
+    }
+    xhr.send();
   };
 
   var loadRAW = function(url,cb) {
-    $.ajax({
-      url:url,
-      method:'GET',
-      responseType:'arraybuffer'
-    }).done(function(response) {
-      cb(response);
-    });
-  };
-
-  var font_lib = {};
-  var json_content = null;
-  
-  var getFont = function(fontName,fontType,cb) {
-    console.log(json_content);
-    if(font_lib[fontName] && font_lib[fontName][fontType]) {
-      cb(font_lib[fontName][type]);
-    } else { 
-      $.each(json_content.fonts, function(font) {
-        if(font==fontName) {
-          font_lib[font] = {};
-          $.each(json_content.fonts[font], function(type) {
-            if(fontType == type) {
-              loadRAW(json_content.fonts[font][type],function(raw) {
-                font_lib[font][type] = raw;
-                cb(raw);
-              });
-            }
-          });
-        }
-      });
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'arraybuffer';
+    xhr.onload = function(e) {
+      cb(xhr.response);
     }
+    xhr.send();
   };
 
   var ds = {
-    json_content : null,
     open : function(url,cb) {
       var dsObj = this;
       loadJSON(url,function(response) {
         dsObj.json_content = response;
-        cb();
+        console.log(response);
+        var context = {
+          json: response,
+          getFont: function(url, cb) {
+            loadRAW(url, function(response) {
+              cb(response);
+            });
+          }
+        };
+        cb(context);
       });
     }
   };

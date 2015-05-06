@@ -1,8 +1,51 @@
 {
-  "fonts" : {
-    "THSarabun" : {
-      "normal" : "fonts/THSarabun.ttf",
-      "bold" : "fonts/THSarabun Bold.ttf"
+  "fonts" : [ 
+    {
+      "face" : "THSarabun",
+      "type" : "normal",
+      "url" : "fonts/THSarabun.ttf"
+    },
+    {
+      "face" : "THSarabun",
+      "type" : "bold",
+      "url" : "fonts/THSarabun Bold.ttf"
     }
-  }
+  ],
+  "styles" : [
+    {
+      "id":"body_text",
+      "font":{"face":"THSarabun","type":"normal","size":20}
+    }
+  ],
+  "pages":[
+    {
+      "contents": [
+        {
+          "type":"text",
+          "style":"body_text",
+          "position":{"x":10, "y":10},
+          "text":"ทดสอบภาษาไทย 1",
+          "options" : {
+            "align":"right",
+            "width":200
+          }
+        }
+      ]
+    },
+    {
+      "contents": [
+        {
+          "type":"text",
+          "style":"body_text",
+          "position":{"x":10, "y":10},
+          "text":"ทดสอบภาษาไทย 2",
+          "options" : {
+            "align":"right",
+            "width":200
+          }
+        }
+      ]
+    }
+  ] 
 }
+    

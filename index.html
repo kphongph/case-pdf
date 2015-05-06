@@ -9,7 +9,23 @@
    <div id="messagebox"></div>
    <iframe id="mypdf" width="100%" height="100%"></iframe>
  
-   <script data-main="app" src="bower_components/requirejs/require.js">
+   <script src="./bower_components/requirejs/require.js">
+   </script>
+   <script>
+     require.config({
+       paths: {
+         "main":"case_pdf"
+       }
+     });
+
+     require(['main'], function(app) {
+       app.parser('test.json', {
+         'finish': function(pdfContent) {
+            document.getElementById('mypdf').src = pdfContent;
+         }
+       });
+     });
+   
    </script>
     
 </body>
