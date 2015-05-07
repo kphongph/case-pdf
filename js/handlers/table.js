@@ -1,7 +1,8 @@
 define([
   'require',
   'jquery',
-  'app/handlers/text'
+  'app/handlers/text',
+  'app/handlers/container'
 ],function(require,$) {
 
   var tableHandler = function() {

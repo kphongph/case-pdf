@@ -22,7 +22,8 @@
     },
     {
       "id":"table_header",
-      "font":{"face":"THSarabun","type":"bold","size":18}
+      "font":{"face":"THSarabun","type":"bold","size":18},
+      "background":"#efefef"
     }
   ],
   "pages":[
@@ -36,11 +37,11 @@
           "widths":["100","120","140","100"],
           "body": [
             [
-              { 
-                "type":"text",
-                "text":"ส่วนหัว 1",
-                "style":"table_header",
-                "options":{"align":"center"}
+              {
+                  "type":"text",
+                  "text":"ส่วนหัว 1",
+                  "style":"table_header",
+                  "options":{"align":"center"}
               },
               {"type":"text","text":"ส่วนหัว 2","style":"table_header"},
               {"type":"text","text":"ส่วนหัว 3"},
