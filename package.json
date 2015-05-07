@@ -1,0 +1,23 @@
+{
+  "name": "case-pdf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kphongph/case-pdf.git"
+  },
+  "author": "Phongphun Kijsanayothin (kphongph@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kphongph/case-pdf/issues"
+  },
+  "homepage": "https://github.com/kphongph/case-pdf",
+  "dependencies": {
+    "connect": "^3.3.5",
+    "serve-static": "^1.9.2"
+  }
+}

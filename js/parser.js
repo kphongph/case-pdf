@@ -1,9 +1,10 @@
 define([
   'app/datasource',
   'jquery',
+  'app/handlers',
   'pdfkit',
   'blob-stream'
-], function(ds,$,pdfkit,blobStream) {
+], function(ds,$,handlers,pdfkit,blobStream) {
 
   var parser = function(url,config) {
     var parserObj = this;
@@ -32,6 +33,7 @@ define([
       });
 
       parserObj.context = ctx;
+      ctx.doc = doc;
 
       // load all required fonts
 
@@ -61,7 +63,9 @@ define([
       };
 
       loadFonts(ctx, function() {
+        ctx.font_lib = font_lib;
         loadStyles(ctx);
+        ctx.style_lib = style_lib;
         parseContent(ctx);
       });
 
@@ -72,17 +76,7 @@ define([
             doc.addPage();
           }
           $.each(page.contents, function(idx,c) {
-            console.log(c);
-            if(c.type == "text") {
-              if(c.style) {
-                styleHandler(style_lib[c.style],doc);
-              }
-              if(c.options) {
-                doc.text(c.text,c.position.x,c.position.y,c.options);
-              } else {
-                doc.text(c.text,c.position.x,c.position.y);
-              }
-            }
+            handlers(ctx,c);
           });
         });
         doc.end();
